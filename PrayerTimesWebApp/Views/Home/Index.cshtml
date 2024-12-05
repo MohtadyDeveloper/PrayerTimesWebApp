@@ -1,0 +1,27 @@
+﻿@model PrayerTimesWebApp.Models.PrayerTimesModel
+@using PrayerTimesWebApp.Models
+
+<h1>Prayer Times</h1>
+
+<form method="post" asp-action="GetPrayerTimes" asp-controller="Home">
+    <label for="countries">Select a Country:</label>
+    <select id="countries" name="selectedCountry">
+        @foreach (var country in (Dictionary<string, string>)ViewBag.Countries)
+        {
+            <option value="@country.Key">@country.Key</option>
+        }
+    </select>
+    <button type="submit">Get Prayer Times</button>
+</form>
+
+@if (ViewBag.PrayerTimes != null)
+{
+    <h2>Prayer Times:</h2>
+    <ul>
+        <li>Fajr: @ViewBag.PrayerTimes.Fajr</li>
+        <li>Dhuhr: @ViewBag.PrayerTimes.Dhuhr</li>
+        <li>Asr: @ViewBag.PrayerTimes.Asr</li>
+        <li>Maghrib: @ViewBag.PrayerTimes.Maghrib</li>
+        <li>Isha: @ViewBag.PrayerTimes.Isha</li>
+    </ul>
+}
